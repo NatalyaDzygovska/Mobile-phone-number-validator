@@ -33,21 +33,22 @@ public class Application {
     }
 
     private static void printSum(int sum) {
+        String prefix = "The result is: ";
         switch (sum) {
             case 1:
-                System.out.println("One");
+                System.out.println(prefix + "One");
                 break;
             case 2:
-                System.out.println("Two");
+                System.out.println(prefix + "Two");
                 break;
             case 3:
-                System.out.println("Three");
+                System.out.println(prefix + "Three");
                 break;
             case 4:
-                System.out.println("Four");
+                System.out.println(prefix + "Four");
                 break;
             default:
-                System.out.println(sum);
+                System.out.println(prefix + sum);
         }
     }
 
