@@ -18,7 +18,7 @@ public class Application {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            valid = DumbValidation.isValid(phone);
+            valid = RegExpValidation.isValid(phone);
             if (valid) {
                 System.out.println("Phone number is correct!!!");
             } else {
