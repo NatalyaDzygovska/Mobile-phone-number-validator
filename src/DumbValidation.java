@@ -1,6 +1,4 @@
-/**
- * Created by Наталия on 23.10.2016.
- */
+
 public class DumbValidation {
     private static String[] operatorCodes =
             {"39", "50", "63", "66", "67", "68", "91", "92", "93", "94", "95", "96", "97", "98", "99"};
@@ -29,12 +27,11 @@ public class DumbValidation {
     }
 
     private static boolean isCorrectCode(String enteredCode) {
-        boolean isCorrectCode = false;
         for (String code : operatorCodes) {
             if (enteredCode.equals(code)) {
-                isCorrectCode = true;
+                return true;
             }
         }
-        return isCorrectCode;
+        return false;
     }
 }
