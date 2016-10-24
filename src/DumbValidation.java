@@ -2,52 +2,53 @@
  * Created by Наталия on 23.10.2016.
  */
 public class DumbValidation {
-    public static boolean isValid(String phone) {
-        if (phone.charAt(0) != '+' && phone.charAt(0) != '0' && phone.charAt(0) != '8') {
-            return false;
-        }
-        if (phone.charAt(0) == '+' && !phone.substring(1, 4).equals("380")) {
-            return false;
-        }
-        if(phone.charAt(0) == '+' && phone.length()!=13){
-            return false;
-        }
-        if (phone.charAt(0) == '0' && phone.charAt(1) == '0') {
-            if (!phone.substring(2, 5).equals("380")) {
-                return false;
-            }else if(phone.length()!=14){
-                return false;
+    private static String[] operatorCodes =
+            {"39", "50", "63", "66", "67", "68", "91", "92", "93", "94", "95", "96", "97", "98", "99"};
+
+    public static boolean isValid(String str) {
+        if (str.substring(0, 2).equals("00")) {
+            if (str.substring(2, 5).equals("380")) {
+                boolean isCorrectCode = false;
+                for (String code : operatorCodes) {
+                    if (str.substring(5, 7).equals(code)) {
+                        isCorrectCode = true;
+                    }
+                }
+                if (isCorrectCode && str.length()==14) {
+                    return true;
+                }
+            }
+        } else if (str.charAt(0) == '0' && str.charAt(1) != 0) {
+            boolean isCorrectCode = false;
+            for (String code : operatorCodes) {
+                if (str.substring(1, 3).equals(code)) {
+                    isCorrectCode = true;
+                }
+            }
+            if (isCorrectCode && str.length()==10) {
+                return true;
+            }
+        } else if (str.charAt(0) == '+' && str.substring(1, 4).equals("380")) {
+            boolean isCorrectCode = false;
+            for (String code : operatorCodes) {
+                if (str.substring(4, 6).equals(code)) {
+                    isCorrectCode = true;
+                }
+            }
+            if (isCorrectCode && str.length()==13) {
+                return true;
+            }
+        }else if (str.charAt(0)=='8' && str.charAt(1)=='0'){
+            boolean isCorrectCode = false;
+            for (String code : operatorCodes) {
+                if (str.substring(2, 4).equals(code)) {
+                    isCorrectCode = true;
+                }
+            }
+            if (isCorrectCode && str.length()==11) {
+                return true;
             }
         }
-        if (phone.charAt(0) == '0' && phone.charAt(1) != '0') {
-            if (!phone.substring(1, 3).equals("39") &&
-                    !phone.substring(1, 3).equals("50") &&
-                    !phone.substring(1, 3).equals("63") &&
-                    !phone.substring(1, 3).equals("66") &&
-                    !phone.substring(1, 3).equals("67") &&
-                    !phone.substring(1, 3).equals("68") &&
-                    !phone.substring(1, 3).equals("91") &&
-                    !phone.substring(1, 3).equals("92") &&
-                    !phone.substring(1, 3).equals("93") &&
-                    !phone.substring(1, 3).equals("94") &&
-                    !phone.substring(1, 3).equals("95") &&
-                    !phone.substring(1, 3).equals("96") &&
-                    !phone.substring(1, 3).equals("97") &&
-                    !phone.substring(1, 3).equals("98") &&
-                    !phone.substring(1, 3).equals("99")) {
-                return false;
-            }else if(phone.length()!=10){
-                return false;
-            }
-        }
-        if (phone.charAt(0)=='8' && phone.length()!=11){
-            return false;
-        }
-        try {
-            Long phoneNumber = Long.parseLong(phone);
-        } catch (NumberFormatException e) {
-            return false;
-        }
-        return true;
+        return false;
     }
 }
