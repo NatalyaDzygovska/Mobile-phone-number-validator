@@ -28,7 +28,7 @@ public class DumbValidation {
 
     private static boolean isCorrectCode(String enteredCode) {
         for (String code : operatorCodes) {
-            if (enteredCode.equals(code)) {
+            if (code.equals(enteredCode)) {
                 return true;
             }
         }
